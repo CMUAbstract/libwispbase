@@ -2,12 +2,12 @@ LIB = libwispbase
 
 OBJECTS = \
 	wired/uart.o \
-	rand/rand.o \
-	nvm/fram.o \
-	internals/wisp-init.o \
-	Timing/timer.o \
-	Math/crc16_LUT.o \
-	RFID/interface.o \
+#	internals/wisp-init.o \
+#	rand/rand.o \
+#	nvm/fram.o \
+#	Timing/timer.o \
+#	Math/crc16_LUT.o \
+#	RFID/interface.o \
 
 LIBWISPBASE_INCLUDE_SPI ?= 1
 LIBWISPBASE_INCLUDE_ACCEL ?= 1
