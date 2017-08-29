@@ -13,6 +13,13 @@ LIBWISPBASE_INCLUDE_SPI ?= 1
 LIBWISPBASE_INCLUDE_ACCEL ?= 1
 LIBWISPBASE_INCLUDE_RFID ?= 1
 
+# Renamed a little for user-friendliness
+ifneq ($(LIBMSP_DCO_FREQ),)
+LOCAL_CFLAGS += -DCONFIG_DCOCLKDIV_FREQ=$(LIBMSP_DCO_FREQ)
+else
+$(error DCO clock frequency must be set via LIBMSP_DCO_FREQ)
+endif
+
 ifeq ($(LIBWISPBASE_INCLUDE_SPI),1)
 LOCAL_CFLAGS += -DLIBWISPBASE_INCLUDE_SPI
 OBJECTS += wired/spi.o

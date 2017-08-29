@@ -46,7 +46,9 @@ void UART_init(void) {
 
 //#define UART_CLOCK 1000000
 //#define UART_CLOCK 4000000
-#define UART_CLOCK 8000000
+//#define UART_CLOCK 8000000
+//#define UART_CLOCK 16000000
+#define UART_CLOCK	CONFIG_DCOCLKDIV_FREQ
 
 #if UART_CLOCK == 1000000
 #if UART_BAUDRATE == 9600
@@ -66,9 +68,17 @@ void UART_init(void) {
 #endif // UART_BAUDRATE
 #elif UART_CLOCK == 8000000
 #if UART_BAUDRATE == 115200
+#pragma message "8MHz UART"
     UCA0BR0 = 4;
     UCA0BR1 = 0;
     UCA0MCTLW = UCOS16 | UCBRF_4 | (0x55 << 8);
+#endif // UART_BAUDRATE
+#elif UART_CLOCK == 16000000
+#if UART_BAUDRATE == 115200
+#pragma message "16MHz UART"
+    UCA0BR0 = 8;
+    UCA0BR1 = 0;
+    UCA0MCTLW = UCOS16 | UCBRF_10 | (0xF7 << 8);
 #endif // UART_BAUDRATE
 #endif // UART_CLOCK
 
